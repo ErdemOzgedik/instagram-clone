@@ -15,3 +15,50 @@
 .app__headerImage {
   object-fit: contain;
 }
+
+.app__modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app__fade {
+  min-width: 350px;
+  width: 20%;
+  background-color: white;
+  border: 2px solid lightgray;
+  box-shadow: lightgray;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.app__fadeHeader {
+  font-size: 30px;
+  font-weight: 400;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.app__fadeInput {
+  border: 1px solid #000;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: lightgrey;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.app__fadeHeader:focus {
+  outline: none;
+}
+
+.app__fadeButton {
+  padding: 5px;
+  background-color: rgba(var(--d69, 0, 149, 246), 1);
+  font-size: 22px;
+  color: #fafafa;
+  border-radius: 5px;
+}
