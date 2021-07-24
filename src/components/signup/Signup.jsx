@@ -47,7 +47,7 @@ export default function Signup() {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
-        authUser.user.updateProfile({ displayName: username });
+        return authUser.user.updateProfile({ displayName: username });
       })
       .catch((err) => {
         setErrorMessage(err.message);
