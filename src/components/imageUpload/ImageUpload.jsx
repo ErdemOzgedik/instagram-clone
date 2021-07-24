@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { db, storage } from "../../firebase";
 import firebase from "firebase";
+import "./imageUpload.css";
 
 export default function ImageUpload({ username }) {
   const [caption, setCaption] = useState("");
@@ -62,26 +63,19 @@ export default function ImageUpload({ username }) {
 
   return (
     <div className="imageUpload">
-      <form>
-        <div className="imageUpload__header">UPLOAD YOU POST</div>
+      <div className="imageUpload__header">UPLOAD YOU POST</div>
 
-        <progress
-          className="imageUpload__progress"
-          value={progress}
-          max="100"
-        />
-        <input
-          type="text"
-          placeholder="Enter a caption..."
-          value={caption}
-          onChange={(e) => setCaption(e.target.value)}
-        />
-        <input type="file" onChange={handleFileUpload} />
+      <progress className="imageUpload__progress" value={progress} max="100" />
+      <input
+        className="imageUpload__input"
+        type="text"
+        placeholder="Enter a caption..."
+        value={caption}
+        onChange={(e) => setCaption(e.target.value)}
+      />
+      <input type="file" onChange={handleFileUpload} />
 
-        <Button type="submit" onClick={handleUpload}>
-          Upload
-        </Button>
-      </form>
+      <Button onClick={handleUpload}>Upload</Button>
     </div>
   );
 }

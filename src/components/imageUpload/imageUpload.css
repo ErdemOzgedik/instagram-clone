@@ -1,0 +1,33 @@
+.imageUpload {
+    width: 60%;
+    margin: 10px auto;
+    background-color: white;
+    border-top: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+}
+
+.imageUpload__header {
+    text-align: center;
+    padding: 20px;
+}
+
+.imageUpload progress {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.imageUpload__input {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #333;
+    line-height: 12px;
+}
+
+
+.imageUpload__input:focus {
+    outline: none;
+}
