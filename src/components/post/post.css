@@ -35,17 +35,16 @@
 
 .post__commentForm {
     display: flex;
-    align-items: center;
-    padding: 10px;
 }
 
 .post__commentInput {
-    flex: 4;
+    flex: 1;
     padding: 10px;
     font-size: 12px;
     font-weight: 400;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border-radius: 5px;
+    border: none;
+    border-top: 1px solid lightgray;
 }
 
 .post__commentInput:focus {
@@ -53,9 +52,10 @@
 }
 
 .post__commentForm button {
-    flex: 1;
-    background-color: lightskyblue;
-    color: #fff;
-    border-radius: 5px;  
-
+    flex: 0;
+    border: none;
+    background-color: transparent;
+    color: #6082a3;
+    border-top: 1px solid lightgray;
+    margin-right: 10px;
 }

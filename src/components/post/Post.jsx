@@ -64,7 +64,7 @@ export default function Post({ post, id }) {
             onChange={(e) => setComment(e.target.value)}
           />
           <button type="submit" onClick={handleComment}>
-            Add Comment
+            Post
           </button>
         </form>
       </div>
