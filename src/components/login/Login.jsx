@@ -2,6 +2,8 @@ import "./login.css";
 import { Button, Input, Modal } from "@material-ui/core";
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { auth } from "../../firebase";
+import { Alert } from "@material-ui/lab";
 
 function getModalStyle() {
   const top = 50;
@@ -31,21 +33,36 @@ export default function Login() {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log(`LOG in -> ${email},${password},${username}`);
-
+  const clearStates = () => {
     setEmail("");
     setPassword("");
-    setUsername("");
+    setOpen(false);
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    setErrorMessage("");
+    setError(false);
+
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        clearStates();
+        console.log(`Sign in ->${password},${email}`);
+      })
+      .catch((err) => {
+        setErrorMessage(err.message);
+        setError(true);
+      });
   };
 
   return (
     <div>
       <Button type="button" onClick={() => setOpen(true)}>
-        Log in
+        Sign in
       </Button>
       <Modal
         open={open}
@@ -62,12 +79,6 @@ export default function Login() {
             ></img>
             <form className="login__form">
               <Input
-                placeholder="username"
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-              <Input
                 placeholder="email"
                 type="email"
                 value={email}
@@ -79,9 +90,10 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Button type="submit" onClick={handleLogin}>
-                Log in
+              <Button type="submit" onClick={handleSignIn}>
+                Sign in
               </Button>
+              {error && <Alert severity="error">{errorMessage}</Alert>}
             </form>
           </center>
         </div>

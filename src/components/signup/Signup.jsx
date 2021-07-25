@@ -4,7 +4,6 @@ import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { auth } from "../../firebase";
 import { Alert } from "@material-ui/lab";
-import { useEffect } from "react";
 
 function getModalStyle() {
   const top = 50;
@@ -37,7 +36,13 @@ export default function Signup() {
   const [username, setUsername] = useState("");
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [user, setUser] = useState(null);
+
+  const clearStates = () => {
+    setEmail("");
+    setUsername("");
+    setPassword("");
+    setOpen(false);
+  };
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -47,28 +52,16 @@ export default function Signup() {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
-        return authUser.user.updateProfile({ displayName: username });
+        authUser.user.updateProfile({ displayName: username });
+
+        clearStates();
+        console.log(`Register -> ${email},${password},${username}`);
       })
       .catch((err) => {
         setErrorMessage(err.message);
         setError(true);
       });
-
-    console.log(`Register -> ${email},${password},${username}`);
   };
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-        setUser(authUser);
-      } else {
-        setUser(null);
-      }
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, [user, username]);
 
   return (
     <div>

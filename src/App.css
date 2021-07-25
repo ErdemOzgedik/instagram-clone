@@ -75,8 +75,10 @@
   justify-content: center;
 }
 
-.app_postsLeft {}
-
 .app__postsRight {
   margin-left: 20px;
+}
+
+.app_loginContainer {
+  display: flex;
 }
